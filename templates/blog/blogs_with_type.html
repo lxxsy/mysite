@@ -1,0 +1,8 @@
+{% extends 'base.html'%}
+
+{% block body_two %}
+    <h3>{{ blog_type }}</h3>
+    {% for blog in blog_list%}
+        <p>{{ blog }}</p>
+    {% endfor %}
+{% endblock body_two %}

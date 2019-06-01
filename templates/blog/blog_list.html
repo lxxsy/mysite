@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block body_two %}
+    {% for blog in blogs %}
+        <a href="{% url 'blog:blog_detail' blog.pk%}">
+            <h4>{{ blog.title }}</h4>
+        </a>
+        <p>{{ blog.content|truncatechars:30 }}</p>
+    {% empty %}
+        <p>暂无博客，请期待!</p>
+    {% endfor %}
+
+    {# {{ blogs|length}} 获取对象总数#}
+    <p>共有{{ blogs_count }}篇博客</p>
+{% endblock body_two %}

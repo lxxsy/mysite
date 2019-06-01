@@ -1,0 +1,38 @@
+{% load staticfiles %} <!-- 加载...看说明 -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock title %}</title>
+        <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+        <script type="text/javascript" src="{% static 'js/jquery.1.12.4.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+        {% block head %}{% endblock head %}
+    </head>
+    <body>
+    {% block body%}
+        <nav class="navbar navbar-default"> <!-- 制作导航条，使用nav标签 -->
+            <div class="container-fluid"> <!-- 还可包含一个.container或.container-fluid容器，从而让导航条居中，并在两侧添加内补(padding） -->
+                <div class="navbar-header"> <!-- 向<div>元素添加一个标题.navbar-header，内部包含了带有.navbar-brand的元素。这会让文本看起来更大一号 -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"aria-expanded="false"> <!-- 为了给导航栏添加响应式特性，需要折叠的内容必须包裹在带有.collapse，.navbar-collapse的<div> 中。折叠起来的导航栏实际上是一个带有.navbar-toggle及两个data-元素的按钮。第一个是data-toggle，用于告诉JavaScript需要对按钮做什么，第二个是 data-target，指示要切换到哪一个元素。三个带有.icon-bar 的 <span> 创建所谓的汉堡按钮。这些会切换为 .nav-collapse <div> 中的元素。为了实现以上这些功能，必须包含 Bootstrap 折叠（Collapse）插件 -->
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="navbar-brand">个人博客网站</div>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                   <ul class="nav navbar-nav"> <!-- 为了向导航栏添加链接，只需要简单地添加带有.nav，.navbar-nav 的无序列表即可 -->
+                        <li class="active"> <a href="{% url 'home' %}">首页</a></li>
+                        <li><a href="{% url 'blog:blog_list' %}">博客</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block body_two %}{% endblock body_two %}
+    {% endblock body %}
+    </body>
+</html>
