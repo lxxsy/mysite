@@ -26,8 +26,12 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                    <ul class="nav navbar-nav"> <!-- 为了向导航栏添加链接，只需要简单地添加带有.nav，.navbar-nav 的无序列表即可 -->
-                        <li class="active"> <a href="{% url 'home' %}">首页</a></li>
-                        <li><a href="{% url 'blog:blog_list' %}">博客</a></li>
+                        <li class="{% block index_active %}{% endblock index_active %}"> 
+                            <a href="{% url 'home' %}">首页</a>
+                        </li>
+                        <li class="{% block blog_active %}{% endblock blog_active %}">
+                            <a href="{% url 'blog:blog_list' %}">博客</a>
+                        </li>
                     </ul>
                 </div>
             </div>

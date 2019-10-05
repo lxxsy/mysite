@@ -1,0 +1,32 @@
+/* blog_list.html */
+div.blog:not(:last-child){
+    margin-top:1em;
+    border-bottom:1px solid #ccc;
+}
+div.blog span a{
+    margin-left:-10px;
+}
+ul.blog-types{
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+/* blog_detail.html */
+ul.blog-info-description{
+    list-style-type: none;
+    padding-left: 0px;
+}
+ul.blog-info-description li{
+    display:inline-block;
+    margin-right:1em;
+}
+ul.blog-info-description a{
+    margin-left:-10px;
+}
+div.blog-content{
+    word-wrap:break-word; 
+    overflow:hidden;
+}
+div.blog-content p{
+    text-indent: 2em; 
+}
