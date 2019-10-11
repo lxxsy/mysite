@@ -14,11 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path, include
 from . import views
 
 urlpatterns = [
     path('', views.index, name='home'),
     path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls', namespace='blog')),    
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('blog/', include('blog.urls', namespace='blog')),
+    path('signin/', views.sign_in, name='sign_in'),    
 ]
+# ckeditor富文本编辑器访问图片指定路径
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

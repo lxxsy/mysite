@@ -37,7 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
+    'ckeditor_uploader',
     'blog',
+    'read_statistics',
+    'comment',
+    
 ]
 
 MIDDLEWARE = [
@@ -81,7 +86,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'mysite',
         'USER': 'postgres',
-        'PASSWORD': 'li443936974',
+        'PASSWORD': '941128',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -110,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'zh-Hans'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -132,6 +137,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+# media 配置
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+# ckeditor 配置
+CKEDITOR_UPLOAD_PATH = 'upload/'
 # 日志
 LOG_PATH = os.path.join(BASE_DIR, 'log')
 # 如果日志文件夹不存在，则创建
@@ -174,3 +184,5 @@ LOGGING = {
         },
     },
 }
+# 自定义常量
+EACH_PAGE_BLOGS_NUMBER = 6 # 每页博客数量

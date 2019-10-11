@@ -21,12 +21,49 @@
                         </span>
                     </li>
                     <li><span class="glyphicon glyphicon-time">{{ blog.created_time|date:"Y-m-d"}}</span></li>
+                    <li><span>阅读({{ blog.get_read_num }})</span></li>
                 </ul>
                 <div class="blog-content">
-                    <p>{{ blog.content}}</p>
+                    <p>{{ blog.content|safe}}</p>
                 </div>
+                <div class="blog-more">
+                    {% if blog_previous %}
+                        <p>上一篇：<a href="{% url 'blog:blog_detail' blog_previous.pk %}">{{ blog_previous }}</a></p>
+                    {% else %}
+                        <p>上一篇：已是最新博客</p>
+                    {% endif %}
+                    {% if blog_next %}
+                        <p>下一篇：<a href="{% url 'blog:blog_detail' blog_next.pk %}">{{ blog_next }}</a></p>
+                    {% else %}
+                        <p>下一篇：这是最后一篇博客啦</p>
+                    {% endif %}     
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+                <p>提交评论区域</p>
+                {% if user.is_authenticated %}
+                    已登录
+                {% else %}
+                    <form action="{% url 'sign_in' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="username">
+                        <input type="password" name="pwd">
+                        <input type="submit" value="登录">
+                    </form>
+                {% endif %}
+            </div>
+            <div class="col-xs-10 col-xs-offset-1">
+                <p>评论列表区域</p>
             </div>
         </div>
     </div>
    
 {% endblock body_two %}
+if request.user.is_authenticated:
+    # Do something for authenticated users.
+    ...
+else:
+    # Do something for anonymous users.
+    ...

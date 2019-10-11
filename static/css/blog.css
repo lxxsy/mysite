@@ -6,16 +6,14 @@ div.blog:not(:last-child){
 div.blog span a{
     margin-left:-10px;
 }
-ul.blog-types{
-    list-style-type: none;
-    padding-left: 0px;
+div.paginator{
+    text-align: center;
+}
+div.blog span{
+    margin-right: 1em;
 }
 
 /* blog_detail.html */
-ul.blog-info-description{
-    list-style-type: none;
-    padding-left: 0px;
-}
 ul.blog-info-description li{
     display:inline-block;
     margin-right:1em;
@@ -29,4 +27,7 @@ div.blog-content{
 }
 div.blog-content p{
     text-indent: 2em; 
+}
+div.blog-more{
+    margin-top:20px;
 }
