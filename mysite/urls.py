@@ -24,7 +24,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('blog/', include('blog.urls', namespace='blog')),
-    path('signin/', views.sign_in, name='sign_in'),    
+    path('user/', include('user.urls', namespace='user')),
+    # path('signin/', views.sign_in, name='sign_in'),
+    # path('signup/', views.sign_up, name='sign_up'),   
+    path('comment/', include('comment.urls', namespace='comment')),  
+    path('likes/', include('likes.urls', namespace='likes')),
 ]
 # ckeditor富文本编辑器访问图片指定路径
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

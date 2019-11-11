@@ -3,9 +3,12 @@ import logging
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.core.paginator import Paginator  # 分页功能
+from django.contrib.contenttypes.models import ContentType
 from django.db.models import Count
 from .models import BlogType, Blog
 from read_statistics.utils import response_cookie_key
+from comment.models import Comment
+from comment.forms import CommentForm
 
 
 logger = logging.getLogger('console')
@@ -74,10 +77,13 @@ def blog_detail(request, blog_pk):
     '''博客详细内容'''
     # 相当于使用Blog.objects.get(pk=blog_pk)，区别是如果查询不到则触发404异常
     blog = get_object_or_404(Blog, pk=blog_pk)
+    # ct = ContentType.objects.get_for_model(blog)
+    # comment_obj = Comment.objects.filter(content_type=ct, object_id=blog.pk, parent=None)
     blog_previous = Blog.objects.filter(pk__gt=blog.pk).last()
     blog_next = Blog.objects.filter(pk__lt=blog_pk).first()
     content = {
-        'blog': blog, 'blog_previous': blog_previous, 'blog_next': blog_next
+        'blog': blog, 'blog_previous': blog_previous, 
+        'blog_next': blog_next
     }
     # 阅读计数判定要求为：访客浏览时只要浏览器不关闭那么重复访问某一篇博客时 阅读计数不重复增加
     key = response_cookie_key(request, blog)

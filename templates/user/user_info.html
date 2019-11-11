@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}个人资料{% endblock title %}
+
+{% block index_active %}active{% endblock index_active %}
+
+{% block body_two %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-4">
+                {% if user.is_authenticated %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">个人资料</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul>
+                                <li>昵称：{{ user.get_nickname }} 
+                                    <a href="{% url 'user:nickname_change' %}?form={{ request.get_full_path }}">修改昵称</a>
+                                </li>
+                                <li>邮箱：{% if user.email %}{{ user.email }}{% else %}未绑定 
+                                    <a href="{% url 'user:bind_email' %}?form={{ request.get_full_path }}">绑定邮箱</a>{% endif %}
+                                </li>
+                                <li>上次登录时间:{{ user.last_login|date:"Y-m-d H:i:s" }}</li>
+                                <li><a href="">修改密码:</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% else %}
+                    <span>未登录，跳转到首页...</span>
+                    <script type="text/javascript">
+                        window.location.href='/';
+                    </script>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock body_two %}

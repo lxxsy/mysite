@@ -18,7 +18,7 @@ class ReadNumExpandMethod():
 # 阅读计数
 class ReadNum(models.Model):
     read_num = models.IntegerField(default=0)
-    content_type = models.ForeignKey(ContentType, on_delete=models.DO_NOTHING)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
 
@@ -30,7 +30,7 @@ class ReadNum(models.Model):
 class ReadDetail(models.Model):
     date = models.DateField(auto_now_add=True)
     read_num = models.IntegerField(default=0)
-    content_type = models.ForeignKey(ContentType, on_delete=models.DO_NOTHING)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
 

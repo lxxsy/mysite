@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'blog',
     'read_statistics',
     'comment',
+    'likes',
+    'user',
     
 ]
 
@@ -140,8 +142,28 @@ STATICFILES_DIRS = [
 # media 配置
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+
 # ckeditor 配置
 CKEDITOR_UPLOAD_PATH = 'upload/'
+# 博客详情页面利用ckeditor来显示富文本编辑器
+CKEDITOR_CONFIGS = {
+    'default': {},
+    'comment_ckeditor': {
+        'toolbar': 'custom',
+        'toolbar_custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'],
+            ['TextColor', 'BGColor', 'RemoveFormat'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink'],
+            ['Smiley', 'SpecialChar', 'Blockquote'],
+        ],
+        'width': 'auto',
+        'height': '180',
+        'tabSpaces': 4,
+        'removePlugins': 'elementspath',
+        'resize_enabled': False,
+    }
+}
 # 日志
 LOG_PATH = os.path.join(BASE_DIR, 'log')
 # 如果日志文件夹不存在，则创建
@@ -186,3 +208,12 @@ LOGGING = {
 }
 # 自定义常量
 EACH_PAGE_BLOGS_NUMBER = 6 # 每页博客数量
+
+# 邮箱设置
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_POST = 25
+EMAIL_HOST_USER = '443936974@qq.com'
+EMAIL_HOST_PASSWORD = 'ntptxgqanfahbhcj' # 授权码，qq邮箱授权
+EMAIL_SUBJECT_PREFIX = '李星宇的博客'
+EMAIL_USE_TLS = True # 与SMTP服务器通信时，是否启动TLS链接（安全连接）
